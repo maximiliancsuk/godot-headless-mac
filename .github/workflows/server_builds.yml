@@ -30,7 +30,10 @@ jobs:
       - name: Check if mono is installed correctly
         run: |
           mono --version
-          ls -lah /Library/Frameworks/Mono.framework/Versions/6.12.0/lib
+          cd /Library/Frameworks/Mono.framework/Versions/6.12.0/lib
+          # HACK: see https://github.com/godotengine/godot/issues/31793
+          cp -f libmono-2.0.dll.a mono-2.0-sgen.a;cp -f libmonosgen-2.0.dll.a monosgen-2.0.a
+          cp -f libmono-2.0.dll.a ../bin/mono-2.0-sgen.dll;cp -f libmonosgen-2.0.dll.a ../bin/monosgen-2.0.dll
 
       # - name: Check if pkg-config is reachable, and adding homebrew to path
       #   run: |
