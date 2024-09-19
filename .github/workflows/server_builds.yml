@@ -7,7 +7,7 @@ env:
 
 jobs:
   mac-editor:
-    runs-on: "macos-14-large" # non-ARM version
+    runs-on: "macos-13" # non-ARM version
     name: macOS Headless (target=release_debug, tools=yes)
     
     steps:
