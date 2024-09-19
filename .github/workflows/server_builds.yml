@@ -30,8 +30,11 @@ jobs:
       - name: Check if mono is installed correctly
         run: mono --version
 
-      - name: Check if pkg-config is reachable
-        run: which pkg-config
+      - name: Check if pkg-config is reachable, and adding homebrew
+        run: |
+          which pkg-config
+          export PKG_CONFIG=/opt/homebrew/bin/:$PKG_CONFIG
+
 
       - name: build glue version
         run: |
