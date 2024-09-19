@@ -27,6 +27,12 @@ jobs:
       - name: Check if scons is installed correctly
         run: scons --version
 
+      - name: install mono
+        run: brew install mono
+        
+      - name: Check if mono is installed correctly
+        run: mono --version
+
       - name: build glue version
         run: |
           scons p=server arch=arm64 tools=yes module_mono_enabled=yes mono_glue=no
