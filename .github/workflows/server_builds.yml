@@ -30,7 +30,7 @@ jobs:
       - name: Check if mono is installed correctly
         run: |
           mono --version
-          ls -lah /Library/Frameworks/Mono.framework/Versions/6.12.0
+          ls -lah /Library/Frameworks/Mono.framework/Versions/6.12.0/lib
 
       # - name: Check if pkg-config is reachable, and adding homebrew to path
       #   run: |
@@ -40,7 +40,7 @@ jobs:
 
       - name: build glue version
         run: |
-          scons p=server arch=arm64 tools=yes module_mono_enabled=yes mono_glue=no mono_prefix=/Library/Frameworks/Mono.framework/Versions/Current
+          scons p=server arch=arm64 tools=yes module_mono_enabled=yes mono_glue=no mono_prefix=/Library/Frameworks/Mono.framework/Versions/6.12.0
 
       - name: generate glue
         run: |
@@ -48,7 +48,7 @@ jobs:
 
       - name: Compile
         run: |
-          scons platform=server arch=arm64 tools=yes module_mono_enabled=yes mono_glue=yes mono_prefix=/Library/Frameworks/Mono.framework/Versions/Current use_static_cpp=no -j 8
+          scons platform=server arch=arm64 tools=yes module_mono_enabled=yes mono_glue=yes mono_prefix=/Library/Frameworks/Mono.framework/Versions/6.12.0 use_static_cpp=no -j 8
           mv ./bin/godot_server.osx.tools.arm64.mono ./bin/godot
           ls ./bin
 
