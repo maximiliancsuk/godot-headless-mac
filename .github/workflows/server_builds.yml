@@ -30,6 +30,9 @@ jobs:
       - name: Check if mono is installed correctly
         run: mono --version
 
+      - name: Check if pkg-config is reachable
+        run: which pkg-config
+
       - name: build glue version
         run: |
           scons p=server arch=arm64 tools=yes module_mono_enabled=yes mono_glue=no
