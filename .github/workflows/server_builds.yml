@@ -30,10 +30,10 @@ jobs:
       - name: Check if mono is installed correctly
         run: mono --version
 
-      - name: Check if pkg-config is reachable, and adding homebrew
+      - name: Check if pkg-config is reachable, and adding homebrew to path
         run: |
           which pkg-config
-          export PKG_CONFIG=/opt/homebrew/bin/:$PKG_CONFIG
+          export PATH=/opt/homebrew/bin:$PATH
 
 
       - name: build glue version
