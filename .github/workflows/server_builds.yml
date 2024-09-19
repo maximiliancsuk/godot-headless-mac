@@ -33,9 +33,7 @@ jobs:
       - name: Check if pkg-config is reachable, and adding homebrew to path
         run: |
           which pkg-config
-          export PATH=/opt/homebrew/bin:$PATH
-          /opt/homebrew/bin/pkg-config --version
-          pkg-config --version
+          echo "export PATH=/opt/homebrew/bin:$PATH" >> ~/.bash_profile && source ~/.bash_profile
 
 
       - name: build glue version
