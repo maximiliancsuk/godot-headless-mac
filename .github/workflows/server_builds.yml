@@ -28,7 +28,9 @@ jobs:
         run: scons --version
 
       - name: Check if mono is installed correctly
-        run: mono --version
+        run: |
+          mono --version
+          ls -lah /Library/Frameworks/Mono.framework/Versions/Current
 
       # - name: Check if pkg-config is reachable, and adding homebrew to path
       #   run: |
