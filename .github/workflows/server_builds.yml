@@ -42,9 +42,14 @@ jobs:
       #     echo "export PATH=/opt/homebrew/bin:$PATH" >> ~/.bash_profile && source ~/.bash_profile
       #     /bin/sh pkg-config
 
+      - name: patch source
+        run: |
+          sed -i 's/is_apple = env["platform"] in ["osx", "iphone"]/is_apple = env["platform"] in ["osx", "iphone", "server"]/g' /Users/runner/work/godot-headless-mac/godot-headless-mac/modules/mono/build_scripts/mono_configure.py
+          cat /Users/runner/work/godot-headless-mac/godot-headless-mac/modules/mono/build_scripts/mono_configure.py
+          
       - name: build glue version
         run: |
-          scons platform=osx arch=x86_64 tools=yes module_mono_enabled=yes mono_glue=no mono_prefix=/Library/Frameworks/Mono.framework/Versions/Current -j 8
+          scons platform=server arch=x86_64 tools=yes module_mono_enabled=yes mono_glue=no mono_prefix=/Library/Frameworks/Mono.framework/Versions/Current -j 8
 
       - name: generate glue
         run: |
