@@ -30,15 +30,15 @@ jobs:
       - name: Check if mono is installed correctly
         run: mono --version
 
-      - name: Check if pkg-config is reachable, and adding homebrew to path
-        run: |
-          which pkg-config
-          echo "export PATH=/opt/homebrew/bin:$PATH" >> ~/.bash_profile && source ~/.bash_profile
-
+      # - name: Check if pkg-config is reachable, and adding homebrew to path
+      #   run: |
+      #     which pkg-config
+      #     echo "export PATH=/opt/homebrew/bin:$PATH" >> ~/.bash_profile && source ~/.bash_profile
+      #     /bin/sh pkg-config
 
       - name: build glue version
         run: |
-          scons p=server arch=arm64 tools=yes module_mono_enabled=yes mono_glue=no
+          scons p=server arch=arm64 tools=yes module_mono_enabled=yes mono_glue=no mono_prefix=/Library/Frameworks/Mono.framework/Versions/Current
 
       - name: generate glue
         run: |
@@ -46,7 +46,7 @@ jobs:
 
       - name: Compile
         run: |
-          scons platform=server arch=arm64 tools=yes module_mono_enabled=yes mono_glue=yes use_static_cpp=no -j 8
+          scons platform=server arch=arm64 tools=yes module_mono_enabled=yes mono_glue=yes mono_prefix=/Library/Frameworks/Mono.framework/Versions/Current use_static_cpp=no -j 8
           mv ./bin/godot_server.osx.tools.arm64.mono ./bin/godot
           ls ./bin
 
