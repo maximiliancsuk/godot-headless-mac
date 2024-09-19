@@ -45,7 +45,7 @@ jobs:
       - name: patch source
         run: |
           sed -i '' 's/is_apple = env\["platform"\] in \["osx", "iphone"\]/is_apple = env\["platform"\] in \["osx", "iphone", "server"\]/g' /Users/runner/work/godot-headless-mac/godot-headless-mac/modules/mono/build_scripts/mono_configure.py
-          cat /Users/runner/work/godot-headless-mac/godot-headless-mac/modules/mono/build_scripts/mono_configure.py
+          # cat /Users/runner/work/godot-headless-mac/godot-headless-mac/modules/mono/build_scripts/mono_configure.py
           
       - name: build glue version
         run: |
@@ -59,9 +59,10 @@ jobs:
         run: |
           scons platform=server arch=x86_64 tools=yes module_mono_enabled=yes mono_glue=yes mono_prefix=/Library/Frameworks/Mono.framework/Versions/Current use_static_cpp=no -j 8
           mv ./bin/godot_server.osx.tools.x86_64.mono ./bin/godot
-          ls ./bin
+          ls -lah ./bin
+          ls -lah ./bin/GodotSharp
 
-          zip ./bin/godot.zip ./bin/godot ./bin/monosgen-2.0 ./bin/GodotSharp
+          zip -r ./bin/godot.zip ./bin/godot ./bin/libmonosgen-2.0.dylib ./bin/GodotSharp
       - name: Upload binaries to release
         uses: svenstaro/upload-release-action@v2
         with:
