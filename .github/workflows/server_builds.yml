@@ -44,7 +44,7 @@ jobs:
 
       - name: patch source
         run: |
-          sed -i '' 's/is_apple = env["platform"] in ["osx", "iphone"]/is_apple = env["platform"] in ["osx", "iphone", "server"]/g' /Users/runner/work/godot-headless-mac/godot-headless-mac/modules/mono/build_scripts/mono_configure.py
+          sed -i '' 's/is_apple = env\["platform"\] in \["osx", "iphone"\]/is_apple = env\["platform"\] in \["osx", "iphone", "server"\]/g' /Users/runner/work/godot-headless-mac/godot-headless-mac/modules/mono/build_scripts/mono_configure.py
           cat /Users/runner/work/godot-headless-mac/godot-headless-mac/modules/mono/build_scripts/mono_configure.py
           
       - name: build glue version
