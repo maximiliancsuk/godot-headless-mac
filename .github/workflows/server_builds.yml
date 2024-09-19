@@ -21,8 +21,8 @@ jobs:
       - name: Extract Godot source code
         run: tar xvf godot-${{ env.VERSION }}.tar.xz --strip-components=1
         
-      - name: Install scons, yasm, pkg-config and mono
-        run: brew install scons yasm pkg-config mono
+      - name: Install scons, yasm, pkg-config # and mono
+        run: brew install scons yasm pkg-config # mono
 
       - name: Check if scons is installed correctly
         run: scons --version
