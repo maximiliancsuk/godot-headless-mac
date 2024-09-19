@@ -48,7 +48,7 @@ jobs:
 
       - name: generate glue
         run: |
-          ./bin/godot_server.osx.tools.x86_64.mono --generate-mono-glue modules/mono/glue
+          ./bin/godot.osx.tools.x86_64.mono --generate-mono-glue modules/mono/glue
 
       - name: Compile
         run: |
