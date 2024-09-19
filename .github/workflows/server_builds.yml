@@ -48,13 +48,12 @@ jobs:
 
       - name: generate glue
         run: |
-          ./bin/godot_server.osx.tools.arm64.mono --generate-mono-glue modules/mono/glue
+          ./bin/godot_server.osx.tools.x86_64.mono --generate-mono-glue modules/mono/glue
 
       - name: Compile
         run: |
-          # TODO: add again? -> arch=arm64
           scons platform=server arch=x86_64 tools=yes module_mono_enabled=yes mono_glue=yes mono_prefix=/Library/Frameworks/Mono.framework/Versions/Current use_static_cpp=no -j 8
-          mv ./bin/godot_server.osx.tools.arm64.mono ./bin/godot
+          mv ./bin/godot_server.osx.tools.x86_64.mono ./bin/godot
           ls ./bin
 
           zip ./bin/godot.zip ./bin/godot ./bin/monosgen-2.0 ./bin/GodotSharp
@@ -63,7 +62,7 @@ jobs:
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: ./bin/godot.zip
-          asset_name: Godot_v${{ env.VERSION }}_mac_headless.arm64.zip
+          asset_name: Godot_v${{ env.VERSION }}_mac_headless.x86_64.zip
           tag: ${{ env.VERSION }}
           overwrite: true
           body: "Headless build of Godot ${{ env.VERSION }} for macOS.
