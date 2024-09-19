@@ -30,7 +30,7 @@ jobs:
       - name: Check if mono is installed correctly
         run: |
           mono --version
-          ls -lah /Library/Frameworks/Mono.framework/Versions/Current
+          ls -lah /Library/Frameworks/Mono.framework/Versions/6.12.0
 
       # - name: Check if pkg-config is reachable, and adding homebrew to path
       #   run: |
