@@ -4,6 +4,7 @@ on: [push]
 env:
   VERSION: 3.6.0-stable
 
+
 jobs:
   mac-editor:
     runs-on: "macos-latest"
