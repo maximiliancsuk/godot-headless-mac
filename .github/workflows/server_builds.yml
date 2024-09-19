@@ -31,9 +31,10 @@ jobs:
         run: |
           mono --version
           # cd /Library/Frameworks/Mono.framework/Versions/6.12.0/lib
-          # # HACK: see https://github.com/godotengine/godot/issues/31793
-          # cp -f libmono-2.0.dll.a mono-2.0-sgen.a;cp -f libmonosgen-2.0.dll.a monosgen-2.0.a
-          # cp -f libmono-2.0.dll.a ../bin/mono-2.0-sgen.dll;cp -f libmonosgen-2.0.dll.a ../bin/monosgen-2.0.dll
+          # # HACK: see https://github.com/godotengine/godot/blob/3.6/modules/mono/build_scripts/mono_configure.py#L208
+          # cp -f libmonosgen-2.0.1.dylib libmonosgen-2.0.so
+          # # cp -f libmono-2.0.dll.a mono-2.0-sgen.a;cp -f libmonosgen-2.0.dll.a monosgen-2.0.a
+          # # cp -f libmono-2.0.dll.a ../bin/mono-2.0-sgen.dll;cp -f libmonosgen-2.0.dll.a ../bin/monosgen-2.0.dll
 
       # - name: Check if pkg-config is reachable, and adding homebrew to path
       #   run: |
@@ -43,7 +44,7 @@ jobs:
 
       - name: build glue version
         run: |
-          scons platform=server arch=arm64 tools=yes module_mono_enabled=yes mono_glue=no mono_prefix=/Library/Frameworks/Mono.framework/Versions/6.12.0
+          scons platform=osx arch=arm64 tools=yes module_mono_enabled=yes mono_glue=no mono_prefix=/Library/Frameworks/Mono.framework/Versions/6.12.0
 
       - name: generate glue
         run: |
