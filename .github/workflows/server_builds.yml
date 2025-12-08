@@ -2,7 +2,7 @@ name: ☁ Headless Builds
 on: [push]
 
 env:
-  VERSION: 3.6-stable
+  VERSION: 3.6.2-stable
 
 
 jobs:
